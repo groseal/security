@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<br/>
+<h2>
+    <td><a th:href="@{/new}">Create new user</a></td>
+</h2>
+<form th:method="POST" th:action="@{/addUser}" th:object="${user}">
+    <div>
+        <label for="name">Name: </label>
+        <input type="text" th:field="*{name}" id="name"/>
+        <br/>
+        <label for="password">password: </label>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br/>
+        <input type="submit" value="Create user"/>
+    </div>
+</form>
+
+<hr>
+<div th:switch="${users}">
+    <h2 th:case="null">No user found!</h2>
+    <div th:case="*">
+        <h2>All users</h2>
+        <table>MySQL
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>password</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user:${users}">
+                <td th:utext="${user.id}"></td>
+                <td th:utext="${user.name}"></td>
+                <td th:utext="${user.password}"></td>
+                <td><a th:href="@{/edit{id}(id=${user.getId()})}">Update user</a></td>
+                <td>
+                    <form th:method="DELETE" th:action="@{/delete{id}(id=${user.getId()})}">
+                        <input type="submit" value="Delete user">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
