@@ -7,17 +7,29 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/addUser}" th:object="${user}">
+<hr>
+<td><a th:href="@{/admin}">All users</a></td>
+<hr>
+
+<form th:method="POST" th:action="@{admin/addUser}" th:object="${user}">
     <div>
         <label for="name">Name: </label>
         <input type="text" th:field="*{name}" id="name"/>
         <br/>
-        <label for="password">password: </label>
+        <label for="password">Password: </label>
         <input type="text" th:field="*{password}" id="password"/>
         <br/>
+<!--        <label for="role">Role: </label>-->
+<!--        <input type="text" th:field="*{}" id="role"/>-->
+<!--        <br/>-->
         <input type="submit" value="Create user"/>
     </div>
 </form>
+
+<br/>
+<hr>
+<td><a th:href="@{/logout}">Logout</a></td>
+<hr>
 
 </body>
 </html>

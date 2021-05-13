@@ -5,28 +5,17 @@
     <title>Users</title>
 </head>
 <body>
-<br/>
-<h2>
-    <td><a th:href="@{/new}">Create new user</a></td>
-</h2>
-<form th:method="POST" th:action="@{/addUser}" th:object="${user}">
-    <div>
-        <label for="name">Name: </label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <br/>
-        <label for="password">password: </label>
-        <input type="text" th:field="*{password}" id="password"/>
-        <br/>
-        <input type="submit" value="Create user"/>
-    </div>
-</form>
 
 <hr>
+<td><a th:href="@{admin/new}">New user</a></td>
+<br/>
+<hr>
+
 <div th:switch="${users}">
     <h2 th:case="null">No user found!</h2>
     <div th:case="*">
         <h2>All users</h2>
-        <table>MySQL
+        <table>
             <thead>
             <tr>
                 <th>ID</th>
@@ -39,9 +28,9 @@
                 <td th:utext="${user.id}"></td>
                 <td th:utext="${user.name}"></td>
                 <td th:utext="${user.password}"></td>
-                <td><a th:href="@{/edit{id}(id=${user.getId()})}">Update user</a></td>
+                <td><a th:href="@{admin/edit{id}(id=${user.getId()})}">Update user</a></td>
                 <td>
-                    <form th:method="DELETE" th:action="@{/delete{id}(id=${user.getId()})}">
+                    <form th:method="DELETE" th:action="@{admin/delete{id}(id=${user.getId()})}">
                         <input type="submit" value="Delete user">
                     </form>
                 </td>
@@ -50,6 +39,11 @@
         </table>
     </div>
 </div>
+
+<br/>
+<hr>
+<td><a th:href="@{/logout}">Logout</a></td>
+<hr>
 
 </body>
 </html>

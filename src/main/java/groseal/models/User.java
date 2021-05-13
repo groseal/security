@@ -25,7 +25,7 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "idUser"),
-            inverseJoinColumns = @JoinColumn (name = "idRole"))
+            inverseJoinColumns = @JoinColumn(name = "idRole"))
     private Set<Role> userRoles;
 
     public User() {
@@ -99,4 +99,13 @@ public class User implements UserDetails {
     public void setUserRoles(Set<Role> roles) {
         this.userRoles = roles;
     }
+
+    void addRoleToUser(Role role) {
+        this.getUserRoles().add(role);
+    }
+
+    void deleteRoleToUser(Role role) {
+        this.getUserRoles().remove(role);
+    }
+
 }

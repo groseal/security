@@ -1,11 +1,10 @@
 package groseal.dao;
 
-import groseal.models.Role;
 import groseal.models.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface UserDAO {
@@ -14,11 +13,11 @@ public interface UserDAO {
 
     User readUser(Long id);
 
-    void updateUser(Long id, String name, String password, Set<Role> roles);
+    void updateUser(User user);
 
     void deleteUser(Long id);
 
     List<User> getAllUser();
 
-    User getUserByName(String name);
+    UserDetails loadUserByUsername(String username);
 }

@@ -2,12 +2,12 @@ package groseal.dao;
 
 import groseal.models.Role;
 import groseal.models.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -26,11 +26,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateUser(Long id, String name, String password, Set<Role> roles) {
-        User updateUser = readUser(id);
-        updateUser.setName(name);
-        updateUser.setPassword(password);
-        updateUser.setUserRoles(roles);
+    public void updateUser(User user) {
+        entityManager.merge(user);
     }
 
     @Override
@@ -44,8 +41,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUserByName(String name) {
-        return entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name", User.class).
+    public UserDetails loadUserByUsername(String name) {
+        return (UserDetails) entityManager.createQuery("SELECT u FROM User u WHERE u.name = :name").
                 setParameter("name", name).getSingleResult();
     }
 
