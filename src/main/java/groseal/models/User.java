@@ -99,13 +99,4 @@ public class User implements UserDetails {
     public void setUserRoles(Set<Role> roles) {
         this.userRoles = roles;
     }
-
-    void addRoleToUser(Role role) {
-        this.getUserRoles().add(role);
-    }
-
-    void deleteRoleToUser(Role role) {
-        this.getUserRoles().remove(role);
-    }
-
 }

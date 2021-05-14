@@ -21,11 +21,18 @@ public class UsersController {
         this.userService = userService;
     }
 
-    //Показывает юзера по id
+    //Показывает о вошедшем юзере
     @GetMapping()
     public String show(Model model, Principal principal) {
         model.addAttribute("user", userService.loadUserByUsername(principal.getName()));
         return "showUser";
+    }
+
+    //Показывает юзера по id
+    @GetMapping("/{id}")
+    public String show(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.readUser(id));
+        return "/infoUser";
     }
 
 }

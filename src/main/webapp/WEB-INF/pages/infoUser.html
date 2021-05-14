@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+      <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+      <head>
+      <meta charset="UTF-8">
+      <title>Show user</title>
+</head>
+<body>
+
+<hr>
+<td><a th:href="@{/admin}">All users</a></td>
+<hr>
+
+<h2>User<p th:text="${user.getName()}">VALUE</p></h2>
+<br/>
+Name: <p th:text="${user.getName()}">VALUE</p>
+<br/>
+ID: <p th:text="${user.getId()}">VALUE</p>
+<br/>
+Roles: <p th:text="${user.getUserRoles()}">VALUE</p>
+
+<br/>
+<td><a th:href="@{/admin/edit/{id}(id=${user.getId()})}">Update</a></td>
+<br/>
+<hr>
+<td><a th:href="@{/logout}">Logout</a></td>
+<hr>
+
+</body>
+</html></title>
+</head>
+<body>
+
+</body>
+</html>
