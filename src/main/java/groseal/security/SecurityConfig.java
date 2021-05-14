@@ -30,8 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 //                .antMatchers("/home/**").permitAll()//в эту директорию могут зайти все и без авторизации
                 .antMatchers("/admin/**").access("hasAnyRole( 'ROLE_ADMIN')")
-                .antMatchers("/user/**").access("hasAnyRole( 'ROLE_ADMIN')")
-                .antMatchers("/user/").access("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
+//                .antMatchers("/user/**").access("hasAnyRole( 'ROLE_ADMIN')")
+                .antMatchers("/user/**").access("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
                 .antMatchers("/**").authenticated()
                 .and()
                 .logout().logoutSuccessUrl("/login")//после разлогинивания будет переход на указанную страницу

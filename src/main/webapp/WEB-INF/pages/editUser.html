@@ -10,7 +10,7 @@
 <hr>
 
 
-<form th:method="PATCH" th:action="@{/admin/edit}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:object="${user}">
     <table>
         <tr>
             <th>Login</th>

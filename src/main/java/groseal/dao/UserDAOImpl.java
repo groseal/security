@@ -1,6 +1,5 @@
 package groseal.dao;
 
-import groseal.models.Role;
 import groseal.models.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
